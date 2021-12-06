@@ -1,0 +1,35 @@
+#home-admin {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    justify-content: center;
+
+    @media(max-width:767px){
+        grid-template-columns: auto;
+    }
+
+    > section {
+        position: relative;
+        padding: 10px;
+    }
+
+    .show-from-top {
+        top: -100%;
+        position: absolute;
+
+        &.in {
+            top: 0%;
+            background-color: white;
+    
+            animation: fadeInForm 1s;
+        }
+    }
+}
+
+@keyframes fadeInForm {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
+}

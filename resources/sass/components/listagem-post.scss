@@ -1,0 +1,16 @@
+.listagem-posts {
+
+    max-width: 1140px;
+
+    > div {
+        display: grid;
+        grid-template-columns: 29% 29% 29%;
+        justify-content: center;
+        grid-gap: 60px;
+        width: 100%;
+
+        @media(max-width:767px){
+            grid-template-columns: auto;
+        }
+    }
+}

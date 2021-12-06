@@ -1,0 +1,16 @@
+main#home {
+    section {
+        width: 100%;
+        max-width: 1140px;
+        margin-bottom: 50px;
+    }
+
+    .posts-em-destaque {
+        .post > div {
+            width: 100%;
+            height: 350px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+}

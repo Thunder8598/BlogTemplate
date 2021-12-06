@@ -1,0 +1,62 @@
+.post {
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: black;
+
+        .image-container {
+            img {
+                width: 100%;
+                height: 260px;
+                object-fit: cover;
+            }
+
+            span {
+                position: relative;
+                top: -15px;
+                background-color: #dc4728;
+                color: white;
+                text-transform: uppercase;
+                padding: 5px;
+            }
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .meta {
+            color: #e7b586;
+            margin: 10px 0;
+
+            span:last-child {
+                float: right;
+            }
+        }
+
+        .text {
+            text-align: justify;
+        }
+    }
+
+    .loading {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        svg {
+            animation: rotation 1s infinite linear;
+        }
+
+        @keyframes rotation {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+#artigo {
+    > img {
+        width: 50%;
+
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
+    #content {
+        margin: 20px 0;
+        max-width: 1000px;
+
+        text-align: justify;
+
+        p {
+            font: normal normal 400 14px "Lora", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 23px;
+            color: #515151;
+
+            &#resumo{
+                font-size: 14px;
+            }
+        }
+    }
+}

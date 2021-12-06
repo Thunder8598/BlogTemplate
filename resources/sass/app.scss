@@ -1,0 +1,39 @@
+//Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+//Variables
+@import "variables";
+
+//Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+/* 
+    Components
+*/
+@import "owl.carousel/dist/assets/owl.carousel.css";
+@import "owl.carousel/dist/assets/owl.theme.default.css";
+
+@import "./components/nav.scss";
+@import "./components/header.scss";
+@import "./components/listagem-post.scss";
+@import "./components/post.scss";
+@import "./components/form-post.scss";
+
+/* 
+    Páginas
+*/
+@import "./home/home.scss";
+@import "./artigo/artigo.scss";
+@import "./login/login.scss";
+@import "./home-admin/home-admin.scss";
+
+#root {
+    width: 100%;
+    height: 100vh;
+
+    @media (max-width: 1023px) {
+        main {
+            padding: 0px 20px;
+        }
+    }
+}
