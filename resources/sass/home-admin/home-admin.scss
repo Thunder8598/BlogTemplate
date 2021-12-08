@@ -3,13 +3,18 @@
     grid-template-columns: 80% 20%;
     justify-content: center;
 
-    @media(max-width:767px){
+    @media (max-width: 767px) {
         grid-template-columns: auto;
     }
 
     > section {
         position: relative;
         padding: 10px;
+
+        > button {
+            margin-bottom: 10px;
+            min-width: 90px;
+        }
     }
 
     .show-from-top {
@@ -19,7 +24,7 @@
         &.in {
             top: 0%;
             background-color: white;
-    
+
             animation: fadeInForm 1s;
         }
     }

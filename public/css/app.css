@@ -10273,6 +10273,7 @@ nav {
   position: sticky;
   top: 0;
   background-color: white;
+  z-index: 999;
 }
 nav form input, nav form button {
   height: 30px;
@@ -10392,6 +10393,9 @@ main#home .posts-em-destaque .post > div {
   height: 350px;
   background-position: center;
   background-repeat: no-repeat;
+  color: black;
+  font: normal normal 28px "Raleway", sans-serif;
+  text-transform: uppercase;
 }
 
 #artigo > img {
@@ -10457,6 +10461,10 @@ main#home .posts-em-destaque .post > div {
 #home-admin > section {
   position: relative;
   padding: 10px;
+}
+#home-admin > section > button {
+  margin-bottom: 10px;
+  min-width: 90px;
 }
 #home-admin .show-from-top {
   top: -100%;

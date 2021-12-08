@@ -30,6 +30,7 @@ Route::get("/admin", [Controller::class, "index"]);
 
 Route::post("/data/artigo/criar", [PostsController::class, "createPost"]);
 Route::get("/data/artigo/listar", [PostsController::class, "getListagemPosts"]);
+Route::get("/data/artigo/listar/destaques", [PostsController::class, "getListagemPostsDestaque"]);
 Route::get("/data/artigo/carregar/{id}", [PostsController::class, "getPost"]);
 Route::get("/data/artigo/pesquisar", [PostsController::class, "getListagemPostsPesquisa"]);
 

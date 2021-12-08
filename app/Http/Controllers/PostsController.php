@@ -20,7 +20,7 @@ class PostsController extends Controller
 
             return response()->json($response);
         } catch (Exception $e) {
-            return response(null, 403);
+            return response(null, 500);
         }
     }
 
@@ -37,6 +37,20 @@ class PostsController extends Controller
             return response()->json($response);
         } catch (Exception $e) {
             return response(null, 404);
+        }
+    }
+
+    public function getListagemPostsDestaque()
+    {
+        try {
+            $response = Post::getDestaque();
+
+            if (empty($response))
+                return response(null, 404);
+
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response(null, 500);
         }
     }
 

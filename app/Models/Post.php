@@ -43,8 +43,17 @@ class Post extends Model
     {
         return Post::join("users", "users.id_user", "=", "posts.id_user")
             ->join("categories", "categories.id_categoria", "=", "posts.id_categoria")
-            ->orderBy("posts.id_post")
+            ->orderBy("posts.id_post", "DESC")
             ->offset(($offset > 0 ? $offset * $limit : 0))
             ->simplePaginate($limit, ["posts.id_post", "posts.titulo", "posts.resumo", "posts.url_img", "users.nome", "categories.titulo as categoria", "posts.is_destaque", "posts.created_at"]);
+    }
+
+    public static function getDestaque()
+    {
+        return Post::where(["is_destaque" => 1])
+            ->join("users", "users.id_user", "=", "posts.id_user")
+            ->join("categories", "categories.id_categoria", "=", "posts.id_categoria")
+            ->orderBy("posts.id_post", "DESC")
+            ->limit(5)->get(["posts.id_post", "posts.titulo", "posts.resumo", "posts.url_img", "users.nome", "categories.titulo as categoria", "posts.is_destaque", "posts.created_at"]);
     }
 }
