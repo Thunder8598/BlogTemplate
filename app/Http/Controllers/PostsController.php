@@ -32,11 +32,14 @@ class PostsController extends Controller
         $offset = (((int) $page) - 1);
 
         try {
-            $response = Post::getLista($offset, ((int)($limit ?? 20)));
+            $response = Post::getLista($offset, ((int)($limit ?? 18)));
+
+            if (!count($response->getCollection()))
+                return response(null, 404);
 
             return response()->json($response);
         } catch (Exception $e) {
-            return response(null, 404);
+            return response(null, 503);
         }
     }
 
@@ -65,9 +68,12 @@ class PostsController extends Controller
         try {
             $response = Post::getByTitulo($search, $offset, ((int)($limit ?? 20)));
 
+            if (!count($response->getCollection()))
+                return response(null, 404);
+
             return response()->json($response);
         } catch (Exception $e) {
-            return response(null, 404);
+            return response(null, 500);
         }
     }
 

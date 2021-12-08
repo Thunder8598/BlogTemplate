@@ -10683,13 +10683,40 @@ var ListagemPosts = function (_super) {
       var titulo = _this.props.titulo;
       return react_1["default"].createElement("section", {
         className: "listagem-posts d-flex flex-column align-items-center"
-      }, titulo ? react_1["default"].createElement("h2", null, titulo) : react_1["default"].createElement(react_1["default"].Fragment, null), react_1["default"].createElement("div", null, _this.state.posts.map(function (postData) {
+      }, _this.state.notFound ? react_1["default"].createElement("h2", null, "N\xE3o foi possivel encontrar as postagens.") : react_1["default"].createElement(react_1["default"].Fragment, null, titulo ? react_1["default"].createElement("h2", null, titulo) : react_1["default"].createElement(react_1["default"].Fragment, null), react_1["default"].createElement("div", null, _this.state.posts.map(function (postData) {
         return react_1["default"].createElement(Post_1["default"], __assign({}, postData));
-      })));
+      }))));
     };
 
     _this.componentDidMount = function () {
       _this.loadPosts();
+
+      var blockLoading = false;
+      window.addEventListener("scroll", function () {
+        return __awaiter(_this, void 0, void 0, function () {
+          var listagem, bottom;
+          return __generator(this, function (_a) {
+            switch (_a.label) {
+              case 0:
+                listagem = document.querySelector(".listagem-posts");
+                if (!listagem) return [2];
+                bottom = listagem.getBoundingClientRect().bottom;
+                if (!(window.innerHeight >= bottom && !blockLoading)) return [3, 2];
+                blockLoading = true;
+                return [4, this.loadPosts()];
+
+              case 1:
+                _a.sent();
+
+                blockLoading = false;
+                _a.label = 2;
+
+              case 2:
+                return [2];
+            }
+          });
+        });
+      });
     };
 
     _this.loadPosts = function () {
@@ -10701,6 +10728,7 @@ var ListagemPosts = function (_super) {
             case 0:
               next = this.state.next;
               posts = this.state.posts;
+              if (!next && posts.length || posts.length && this.props.maxNumPosts) return [2];
               url = next !== null && next !== void 0 ? next : "".concat(this.props.baseUrl, "/data/artigo/listar");
               if (this.props.maxNumPosts) url = "".concat(this.props.baseUrl, "/data/artigo/listar?page=1&limit=").concat(this.props.maxNumPosts);else if (this.props.pesquisa) url = "".concat(this.props.baseUrl, "/data/artigo/pesquisar?search=").concat(this.props.pesquisa);
               _b.label = 1;
@@ -10721,6 +10749,9 @@ var ListagemPosts = function (_super) {
 
             case 3:
               error_1 = _b.sent();
+              this.setState({
+                notFound: true
+              });
               return [3, 4];
 
             case 4:
@@ -10732,7 +10763,8 @@ var ListagemPosts = function (_super) {
 
     _this.state = {
       next: null,
-      posts: []
+      posts: [],
+      notFound: false
     };
     return _this;
   }

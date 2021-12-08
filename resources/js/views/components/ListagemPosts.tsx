@@ -24,6 +24,7 @@ interface Props extends BaseProps {
 interface State {
     posts: PostData[],
     next: null | string,
+    notFound: boolean
 }
 
 class ListagemPosts extends Component<Props, State> {
@@ -33,7 +34,8 @@ class ListagemPosts extends Component<Props, State> {
 
         this.state = {
             next: null,
-            posts: []
+            posts: [],
+            notFound: false
         }
     }
 
@@ -43,23 +45,53 @@ class ListagemPosts extends Component<Props, State> {
         return (
             <section className="listagem-posts d-flex flex-column align-items-center">
 
-                {titulo ? <h2>{titulo}</h2> : <></>}
+                {
+                    this.state.notFound ?
+                        (<h2>Não foi possivel encontrar as postagens.</h2>) :
+                        (
+                            <>
+                                {titulo ? <h2>{titulo}</h2> : <></>}
 
-                <div>
-                    {this.state.posts.map((postData) => <Post {...postData} />)}
-                </div>
+                                <div>
+                                    {this.state.posts.map((postData) => <Post {...postData} />)}
+                                </div>
+                            </>
+                        )
+                }
+
+
             </section>
         );
     }
 
     componentDidMount = () => {
         this.loadPosts();
+
+        let blockLoading = false;
+
+        window.addEventListener("scroll", async () => {
+            const listagem = document.querySelector(".listagem-posts");
+
+            if (!listagem)
+                return;
+
+            const { bottom } = listagem.getBoundingClientRect();
+
+            if (window.innerHeight >= bottom && !blockLoading) {
+                blockLoading = true;
+                await this.loadPosts();
+                blockLoading = false;
+            }
+        });
     }
 
     private loadPosts = async () => {
 
         const { next } = this.state;
         let { posts } = this.state;
+
+        if ((!next && posts.length) || (posts.length && this.props.maxNumPosts))
+            return;
 
         let url = next ?? `${this.props.baseUrl}/data/artigo/listar`;
 
@@ -75,7 +107,7 @@ class ListagemPosts extends Component<Props, State> {
 
             this.setState({ posts, next: next_page_url });
         } catch (error) {
-
+            this.setState({ notFound: true });
         }
     }
 }
