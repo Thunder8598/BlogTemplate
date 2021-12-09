@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 import Fetch from "../../../helpers/Fetch";
@@ -36,17 +36,19 @@ class Login extends React.Component<Props, State> {
             <main id="login" className="d-flex justify-content-center align-items-center">
 
                 <form className="shadow d-flex flex-column" onSubmit={this.submitHandle}>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" />
+                    <Link to={this.props.baseUrl}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" />
+                    </Link>
                     {error ? <Alert variant="danger">{error}</Alert> : (<></>)}
 
                     <div className="d-flex flex-column">
                         <label htmlFor="email">E-mail:</label>
-                        <input id="email" name="email" required/>
+                        <input id="email" name="email" required />
                     </div>
 
                     <div className="d-flex flex-column">
                         <label htmlFor="senha">Senha:</label>
-                        <input name="senha" id="senha" type="password" required/>
+                        <input name="senha" id="senha" type="password" required />
                     </div>
 
                     <div className="d-flex" style={{ justifyContent: "center" }}>
