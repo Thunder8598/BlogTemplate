@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Alert } from "react-bootstrap";
 
 import Fetch from "../../../helpers/Fetch";
 import { BaseProps } from "../../globalInterfaces";
@@ -39,20 +38,27 @@ class Login extends React.Component<Props, State> {
                     <Link to={this.props.baseUrl}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" />
                     </Link>
-                    {error ? <Alert variant="danger">{error}</Alert> : (<></>)}
+                    {
+                        error ?
+                            (
+                                <div className="alert alert-danger" role="alert">
+                                    {error}
+                                </div>
+                            ) : (<></>)
+                    }
 
-                    <div className="d-flex flex-column">
+                    <div className="form-group">
                         <label htmlFor="email">E-mail:</label>
-                        <input id="email" name="email" required />
+                        <input id="email" name="email" className="form-control" required />
                     </div>
 
-                    <div className="d-flex flex-column">
+                    <div className="form-group">
                         <label htmlFor="senha">Senha:</label>
-                        <input name="senha" id="senha" type="password" required />
+                        <input name="senha" id="senha" type="password" className="form-control" required />
                     </div>
 
-                    <div className="d-flex" style={{ justifyContent: "center" }}>
-                        <button type="submit">Entrar</button>
+                    <div className="form-group" style={{ justifyContent: "center" }}>
+                        <button className="btn btn-outline-success" type="submit">Entrar</button>
                     </div>
                 </form>
 
