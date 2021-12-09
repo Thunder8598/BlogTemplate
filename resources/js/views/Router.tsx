@@ -18,7 +18,7 @@ class Router extends React.Component<Props>{
     constructor(props: Props) {
         super(props);
 
-        this.baseUrl = this.props.env == "production" ? "/tools/compretambem/public" : "";
+        this.baseUrl = this.props.env == "production" ? "/public" : "";
     }
 
     render = () => {

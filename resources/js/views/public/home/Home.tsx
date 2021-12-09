@@ -42,7 +42,7 @@ class Home extends Component<Props, State> {
                                             this.state.postsDestaque.map(({ titulo, categoria, url_img, id_post }) => {
                                                 return (
                                                     <Link className="post" to={`${this.props.baseUrl}/artigo/${id_post}`}>
-                                                        <div className="d-flex flex-column justify-content-center align-items-center" style={{ backgroundImage: `url("${location.origin + "/" + url_img.replace("public", "storage")}")` }}>
+                                                        <div className="d-flex flex-column justify-content-center align-items-center" style={{ backgroundImage: `url("${this.props.baseUrl + "/" + url_img.replace("public", "storage")}")` }}>
                                                             <h5>{categoria}</h5>
                                                             <h2>{titulo}</h2>
                                                         </div>

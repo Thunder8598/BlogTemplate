@@ -53,7 +53,7 @@ class ListagemPosts extends Component<Props, State> {
                                 {titulo ? <h2>{titulo}</h2> : <></>}
 
                                 <div>
-                                    {this.state.posts.map((postData) => <Post {...postData} />)}
+                                    {this.state.posts.map((postData) => <Post baseUrl={this.props.baseUrl} postData={postData} />)}
                                 </div>
                             </>
                         )

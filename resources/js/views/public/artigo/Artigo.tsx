@@ -55,7 +55,7 @@ class Artigo extends Component<Props, State> {
                     <h1>{titulo}</h1>
                     <p><span>{autor}</span>/<span>{new Date(created_at).toDateString()}</span>/<span>{categoria}</span></p>
 
-                    <img src={location.origin + "/" + url_img.replace("public", "storage")} alt={titulo} title={titulo} />
+                    <img src={this.props.baseUrl + "/" + url_img.replace("public", "storage")} alt={titulo} title={titulo} />
 
                     <div id="content">
                         <p id="resumo" dangerouslySetInnerHTML={{ __html: resumo }}></p>

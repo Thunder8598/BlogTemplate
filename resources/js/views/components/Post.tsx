@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { BaseProps } from "../globalInterfaces";
 
 interface PostData {
     created_at: string,
@@ -12,7 +13,9 @@ interface PostData {
     categoria: string | null
 }
 
-interface Props extends PostData { }
+interface Props extends BaseProps {
+    postData: PostData
+}
 
 class Post extends Component<Props>{
     constructor(props: Props) {
@@ -20,13 +23,13 @@ class Post extends Component<Props>{
     }
 
     render = () => {
-        const { titulo, resumo, id_post, url_img, nome, categoria, created_at } = this.props;
+        const { titulo, resumo, id_post, url_img, nome, categoria, created_at } = this.props.postData;
 
         return (
             <article className="post">
-                <Link to={`/artigo/${id_post}`}>
+                <Link to={`${this.props.baseUrl}/artigo/${id_post}`}>
                     <div className="d-flex flex-column align-items-center image-container">
-                        <img loading="lazy" src={location.origin + "/" + url_img.replace("public", "storage")} />
+                        <img loading="lazy" src={this.props.baseUrl + "/" + url_img.replace("public", "storage")} />
                         <span>{categoria}</span>
                     </div>
                     <div>
